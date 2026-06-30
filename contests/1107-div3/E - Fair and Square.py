@@ -1,7 +1,6 @@
 import sys
 import math
 
-# Increase recursion depth for deep tree traversals
 sys.setrecursionlimit(300000)
 
 def is_perfect_square(n):
@@ -41,9 +40,7 @@ def solve():
             adj[v].append(u)
             
         subtree_size = [0] * (n + 1)
-        
-        # Iterative DFS or manual stack to avoid recursion overhead in Python
-        # Order of nodes for post-order processing
+
         order = []
         stack = [1]
         parent = [0] * (n + 1)
@@ -58,8 +55,7 @@ def solve():
                     visited[v] = True
                     parent[v] = u
                     stack.append(v)
-                    
-        # Compute subtree sizes in reverse post-order
+
         for u in reversed(order):
             subtree_size[u] = 1
             for v in adj[u]:
@@ -92,9 +88,7 @@ def solve():
                 S2 += s * s
                 S3 += s * s * s
                 
-            # Ways to choose 3 nodes from 3 completely distinct branches
             ways_3 = (S1 * S1 * S1 - 3 * S1 * S2 + 2 * S3) // 6
-            # Ways to choose node 'u' itself, and 2 nodes from 2 distinct branches
             ways_2 = (S1 * S1 - S2) // 2
             
             total_good_triplets += (ways_3 + ways_2)
